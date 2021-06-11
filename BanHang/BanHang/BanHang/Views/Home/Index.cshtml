@@ -1,0 +1,63 @@
+﻿@using BanHang.Models;
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+    IEnumerable<Product> listcom = (IEnumerable<Product>)ViewBag.listComMoi;
+    IEnumerable<Product> listlau = (IEnumerable<Product>)ViewBag.listLauMoi;
+    IEnumerable<Product> listbanh = (IEnumerable<Product>)ViewBag.listBanhMoi;
+}
+<section class="home">
+
+    <!-- Slider -->
+    <section class="flexslider">
+        <ul class="slides">
+            <li>
+                <img src="~/Content/img/slides/1.png" alt="" />
+            </li>
+            <li>
+                <img src="~/Content/img/slides/2.png" alt="" />
+
+            </li>
+            <li>
+                <img src="~/Content/img/slides/3.png" alt="" />
+
+            </li>
+            <li>
+                <img src="~/Content/img/slides/4.png" alt="" />
+
+            </li>
+        </ul>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <!-- Products list -->
+
+                    @*@Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", listcom)
+
+
+
+                    @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", listlau)
+
+
+
+                    @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", listbanh)*@
+                    @foreach (var group in Model.GroupBy(n => n.IdLSP))
+                    {
+                        @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", group)
+                    }
+
+                    <!-- End class="product-list isotope" -->
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</section>

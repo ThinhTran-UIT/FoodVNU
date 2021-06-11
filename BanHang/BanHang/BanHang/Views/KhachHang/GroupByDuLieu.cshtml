@@ -1,0 +1,15 @@
+﻿@using BanHang.Models;
+@model List<ThanhVien>
+@{
+    ViewBag.Title = "GroupByDuLieu";
+}
+
+@foreach(var group in Model.GroupBy(n=>n.LoaiThanhVien))
+            {
+                <div>@group.Key.Name</div>
+                foreach(var item in group)
+                {
+                    <p>@item.UserName</p>
+                }
+            }
+

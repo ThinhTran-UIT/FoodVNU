@@ -1,0 +1,229 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc
+@using BanHang.Models
+@model ThanhVien
+@{
+    ViewBag.Title = "Dangky";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="main">
+    <!-- Login / Register -->
+    <section class="login_register">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <!-- Login -->
+                    <div class="login">
+                        <div class="box">
+                            @using (Ajax.BeginForm("DangNhap", "Home", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ThongBao" }))
+                            {
+
+                                <div class="hgroup title">
+                                    <h3>Customer login</h3>
+                                    <h5>Please login using your existing account</h5>
+                                </div>
+
+                                <div class="box-content">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="login_email">UserName</label>
+                                                <div class="controls">
+                                                    <input class="form-control" id="login_email" type="text" name="username1" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" for="login_password">Password</label>
+                                                <div class="controls">
+                                                    <input class="form-control" id="login_password" type="password" name="password1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="buttons">
+                                    <button type="submit" class="btn btn-primary btn-sm btn-block-xs" name="login" value="Login">
+                                        Login
+                                    </button>
+                                    <div class="hgroup title" id="ThongBao" style="color:red;">
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- End class="login" -->
+                </div>
+
+                <div class="col-sm-6">
+                    <!-- Register -->
+                    <div class="register">
+                        <div class="box">
+                            <div class="hgroup title">
+                                <h3>Want to Register?</h3>
+
+                                <h5>Registration allows you to avoid filling in billing and shipping forms every time you checkout on this website. You'll also be able to track your orders with ease!</h5>
+                            </div>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-sm btn-block-xs" data-toggle="modal" data-target="#register">
+                                    Register now &nbsp; <i class="fa fa-chevron-right"></i>
+                                </a>
+                                <span class="btn btn-sm btn-block-xs" style="color:red;">@ViewBag.Thongbao</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End class="register" -->
+                </div>
+
+                <!--<div class="col-sm-6">-->
+                    <!-- Register -->
+                    <!--<div class="register">
+                        <div class="guest">
+                            <div class="box">
+                                <div class="hgroup title">
+                                    <h3>Checkout as Guest</h3>
+                                    <h5>Don't have an account and you don't want to register? Checkout as a guest instead!</h5>
+                                </div>
+
+                                <div class="buttons">
+                                    <a class="btn btn-sm btn-block-xs" href=@Url.Action("Checkout","Home")>
+                                        Checkout as guest &nbsp; <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- End class="register" -->
+                <!--</div>-->
+            </div>
+        </div>
+
+        <!-- Register modal window -->
+        <div id="register" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <div class="hgroup title">
+                                <h3>Register now</h3>
+                                <h5>Registered users get access to features such as order history and so much more!</h5>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="first_name">Name</label>
+                                        <div class="controls">
+                                            @*<input type="text" class="form-control" id="first_name" name="first_name" value="" />*@
+                                            @Html.TextBoxFor(Model => Model.Name, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Name)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="last_name">Phone</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(Model => Model.Phone, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Phone)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="email">Address</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(Model => Model.Address, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Address)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="email">Email</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Email)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="password">UserName</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(Model => Model.UserName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.UserName)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="password_confirm">Password</label>
+                                        <div class="controls">
+                                            @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(Model => Model.Password)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="password"></label>
+                                        <div class="controls">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="password_confirm">Password confirm</label>
+                                        <div class="controls">
+                                            <input class="col-sm-12" type="password" id="password_confirm" name="password_confirm" autocomplete="off" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.MathCaptcha()
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" name="signup" value="Register">
+                                Register now &nbsp; <i class="fa fa-check"></i>
+                            </button>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+        <!-- End Register modal window -->
+
+    </section>
+    <!-- End Login / Register -->
+</section>
+

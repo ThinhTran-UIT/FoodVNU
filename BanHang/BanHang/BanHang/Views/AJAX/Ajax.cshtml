@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Ajax";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+@*@Ajax.ActionLink("Load Ajax MVC", "LoadAjaxActionLink", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "KetQua", InsertionMode = InsertionMode.InsertAfter ,LoadingElementId="loading"})*@
+
+
+@*@using (Ajax.BeginForm("LoadAjaxBeginForm", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "KetQua", InsertionMode = InsertionMode.InsertAfter, LoadingElementId = "loading" }))
+    {
+        <input name="txt1" />
+        <input type="submit" value="Submit" />
+    }
+    <div id="loading" style="display:none;">
+        <img src="~/Content/img/IconLoading.png" />
+    </div>
+    <div id="KetQua" style="height:150px;">
+        ket qua
+
+    </div>*@
+
+@Ajax.ActionLink("Load Ajax MVC", "LoadSPAjax", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "KetQua", InsertionMode = InsertionMode.Replace, LoadingElementId = "divloading" })
+
+<div id="divloading" style="display:none;">
+    <img src="~/Content/img/IconLoading.png" />
+</div>
+<div class="col-sm-9" >
+    <!-- Products list -->
+    <ul class="product-list isotope" id="KetQua">
+    </ul>
+</div>
+
+

@@ -1,0 +1,30 @@
+﻿@using BanHang.Models
+<div class="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6 hidden-xs">
+                @if (Session["TaiKhoan"] != null )
+                {
+                     ThanhVien tv = (ThanhVien)Session["Taikhoan"];
+                    <ul class="list-inline pull-right">
+                        <li>@tv.Name</li>
+                        <li>
+                            @Html.ActionLink("Logout", "DangXuat","Home")
+                        </li>
+                    </ul>
+                 }
+                 else
+                 {
+                     <ul class="list-inline pull-right">
+                           <li>
+                           <a href=@Url.Action("Dangky", "Home") title="Login / Register">Login / Register</a>
+                        </li>
+                    </ul>
+                  }
+            </div>
+        </div>
+    </div>
+</div>

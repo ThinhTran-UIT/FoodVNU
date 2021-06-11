@@ -1,0 +1,56 @@
+﻿@using BanHang.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Product>
+@{
+    ViewBag.Title = "SanPham";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+IEnumerable<NhomSanPham> list = (IEnumerable<NhomSanPham>)ViewBag.list;
+}
+    
+
+<section class="category">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+
+                <!-- Sidebar -->
+                @Html.Partial("~/Views/SanPham/category.cshtml",list )
+
+                <!-- End sidebar -->
+
+            </div>
+
+            <div class="col-sm-9">
+
+                <!-- Products list -->
+                <ul class="product-list isotope">
+                    @foreach (var item in Model)
+                    {
+                        <li class="standard" data-price="58">
+                            <a href=@Url.Action("Product_Info","SanPham",new {@Id=item.Id}) title="Lisette Dress">
+                                <div class="image">
+                                    <img class="primary" src="@Url.Content("~/Content/img/HinhSP/" + item.Image)" alt="Lisette Dress" />
+                                    <img class="secondary" src="@Url.Content("~/Content/img/HinhSP/" + item.img2)" alt="Lisette Dress" />
+                                </div>
+                                <div class="title">
+                                    <div class="prices">
+                                        <span class="price">@item.Price VND</span>
+                                    </div>
+                                    <h3>@item.Name</h3>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                <div>
+                    Page @(Model.PageCount<Model.PageNumber ?0 :Model.PageNumber)/@Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("SanPham", new {page=page, @IdLSP=ViewBag.IdLSP,@NhomSP=ViewBag.NhomSP}))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date_order" Type="DateTime" Precision="3" />
+    <Property Name="Delivered" Type="Boolean" />
+    <Property Name="Payed" Type="Boolean" />
+    <Property Name="Date_delivery" Type="DateTime" Precision="3" />
+    <Property Name="IdKH" Type="Int32" />
+    <Property Name="Interest" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_Bill_ToTable" FromRole="Bill" ToRole="KhachHang" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_ToTable" FromRole="Bill" ToRole="BillInfo" />
+  </EntityType>
+  <EntityType Name="BillInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdB" Type="Int32" />
+    <Property Name="IdSP" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK_BillInfo_ToTable" FromRole="BillInfo" ToRole="Bill" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_BillInfo_ToTable_1" FromRole="BillInfo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="BillNhap">
+    <Key>
+      <PropertyRef Name="IdBN" />
+    </Key>
+    <Property Name="IdBN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdNCC" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="NhaCungCap" Relationship="Self.FK_BillNhap_ToTable" FromRole="BillNhap" ToRole="NhaCungCap" />
+    <NavigationProperty Name="BillNhapInfoes" Relationship="Self.FK_BillNhapInfo_ToTable_1" FromRole="BillNhap" ToRole="BillNhapInfo" />
+  </EntityType>
+  <EntityType Name="BillNhapInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSP" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="IdBN" Type="Int32" />
+    <NavigationProperty Name="BillNhap" Relationship="Self.FK_BillNhapInfo_ToTable_1" FromRole="BillNhapInfo" ToRole="BillNhap" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_BillNhapInfo_ToTable" FromRole="BillNhapInfo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdTV" Type="Int32" />
+    <Property Name="IdSP" Type="Int32" />
+    <NavigationProperty Name="ThanhVien" Relationship="Self.FK_Comment_ToTable" FromRole="Comment" ToRole="ThanhVien" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Comment_ToTable_1" FromRole="Comment" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="IdKH" />
+    </Key>
+    <Property Name="IdKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IdTV" Type="Int32" />
+    <NavigationProperty Name="Bills" Relationship="Self.FK_Bill_ToTable" FromRole="KhachHang" ToRole="Bill" />
+    <NavigationProperty Name="ThanhVien" Relationship="Self.FK_KhachHang_ToTable" FromRole="KhachHang" ToRole="ThanhVien" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Alias" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NhomSP" Type="Int32" />
+    <NavigationProperty Name="NhomSanPham" Relationship="Self.FK_LoaiSanPham_ToTable" FromRole="LoaiSanPham" ToRole="NhomSanPham" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ToTable_2" FromRole="LoaiSanPham" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="LoaiThanhVien">
+    <Key>
+      <PropertyRef Name="IdLTV" />
+    </Key>
+    <Property Name="IdLTV" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Interest" Type="Int32" />
+    <NavigationProperty Name="ThanhViens" Relationship="Self.FK_ThanhVien_ToTable" FromRole="LoaiThanhVien" ToRole="ThanhVien" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="IdNCC" />
+    </Key>
+    <Property Name="IdNCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BillNhaps" Relationship="Self.FK_BillNhap_ToTable" FromRole="NhaCungCap" ToRole="BillNhap" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ToTable" FromRole="NhaCungCap" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="NhaSanXuat">
+    <Key>
+      <PropertyRef Name="IdNSX" />
+    </Key>
+    <Property Name="IdNSX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ToTable_1" FromRole="NhaSanXuat" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="NhomSanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiSanPhams" Relationship="Self.FK_LoaiSanPham_ToTable" FromRole="NhomSanPham" ToRole="LoaiSanPham" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ToTable_3" FromRole="NhomSanPham" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Inventory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Overview" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Like" Type="Int32" />
+    <Property Name="Comment" Type="Int32" />
+    <Property Name="IdNCC" Type="Int32" />
+    <Property Name="IdNSX" Type="Int32" />
+    <Property Name="IdLSP" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="New" Type="Boolean" />
+    <Property Name="img1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="img2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NhomSP" Type="Int32" />
+    <NavigationProperty Name="BillInfoes" Relationship="Self.FK_BillInfo_ToTable_1" FromRole="Product" ToRole="BillInfo" />
+    <NavigationProperty Name="BillNhapInfoes" Relationship="Self.FK_BillNhapInfo_ToTable" FromRole="Product" ToRole="BillNhapInfo" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_ToTable_1" FromRole="Product" ToRole="Comment" />
+    <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_Product_ToTable_2" FromRole="Product" ToRole="LoaiSanPham" />
+    <NavigationProperty Name="NhaCungCap" Relationship="Self.FK_Product_ToTable" FromRole="Product" ToRole="NhaCungCap" />
+    <NavigationProperty Name="NhaSanXuat" Relationship="Self.FK_Product_ToTable_1" FromRole="Product" ToRole="NhaSanXuat" />
+    <NavigationProperty Name="NhomSanPham" Relationship="Self.FK_Product_ToTable_3" FromRole="Product" ToRole="NhomSanPham" />
+  </EntityType>
+  <EntityType Name="ThanhVien">
+    <Key>
+      <PropertyRef Name="IdTV" />
+    </Key>
+    <Property Name="IdTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IdLTV" Type="Int32" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_ToTable" FromRole="ThanhVien" ToRole="Comment" />
+    <NavigationProperty Name="KhachHangs" Relationship="Self.FK_KhachHang_ToTable" FromRole="ThanhVien" ToRole="KhachHang" />
+    <NavigationProperty Name="LoaiThanhVien" Relationship="Self.FK_ThanhVien_ToTable" FromRole="ThanhVien" ToRole="LoaiThanhVien" />
+  </EntityType>
+  <Association Name="FK_Bill_ToTable">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="IdKH" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="IdKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_ToTable">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_ToTable_1">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhap_ToTable">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillNhap" Type="Self.BillNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="IdNCC" />
+      </Principal>
+      <Dependent Role="BillNhap">
+        <PropertyRef Name="IdNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhapInfo_ToTable_1">
+    <End Role="BillNhap" Type="Self.BillNhap" Multiplicity="0..1" />
+    <End Role="BillNhapInfo" Type="Self.BillNhapInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BillNhap">
+        <PropertyRef Name="IdBN" />
+      </Principal>
+      <Dependent Role="BillNhapInfo">
+        <PropertyRef Name="IdBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhapInfo_ToTable">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="BillNhapInfo" Type="Self.BillNhapInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillNhapInfo">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_ToTable">
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhVien">
+        <PropertyRef Name="IdTV" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_ToTable_1">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KhachHang_ToTable">
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhVien">
+        <PropertyRef Name="IdTV" />
+      </Principal>
+      <Dependent Role="KhachHang">
+        <PropertyRef Name="IdTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiSanPham_ToTable">
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="0..1" />
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoaiSanPham">
+        <PropertyRef Name="NhomSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_2">
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdLSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThanhVien_ToTable">
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThanhVien">
+        <PropertyRef Name="IdLTV" />
+      </Principal>
+      <Dependent Role="ThanhVien">
+        <PropertyRef Name="IdLTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="IdNCC" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_1">
+    <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaSanXuat">
+        <PropertyRef Name="IdNSX" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdNSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_3">
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="NhomSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBanHangEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bills" EntityType="Self.Bill" />
+    <EntitySet Name="BillInfoes" EntityType="Self.BillInfo" />
+    <EntitySet Name="BillNhaps" EntityType="Self.BillNhap" />
+    <EntitySet Name="BillNhapInfoes" EntityType="Self.BillNhapInfo" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
+    <EntitySet Name="LoaiThanhViens" EntityType="Self.LoaiThanhVien" />
+    <EntitySet Name="NhaCungCaps" EntityType="Self.NhaCungCap" />
+    <EntitySet Name="NhaSanXuats" EntityType="Self.NhaSanXuat" />
+    <EntitySet Name="NhomSanPhams" EntityType="Self.NhomSanPham" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ThanhViens" EntityType="Self.ThanhVien" />
+    <AssociationSet Name="FK_Bill_ToTable" Association="Self.FK_Bill_ToTable">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_ToTable" Association="Self.FK_BillInfo_ToTable">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_ToTable_1" Association="Self.FK_BillInfo_ToTable_1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillInfo" EntitySet="BillInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhap_ToTable" Association="Self.FK_BillNhap_ToTable">
+      <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+      <End Role="BillNhap" EntitySet="BillNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhapInfo_ToTable_1" Association="Self.FK_BillNhapInfo_ToTable_1">
+      <End Role="BillNhap" EntitySet="BillNhaps" />
+      <End Role="BillNhapInfo" EntitySet="BillNhapInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhapInfo_ToTable" Association="Self.FK_BillNhapInfo_ToTable">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillNhapInfo" EntitySet="BillNhapInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_ToTable" Association="Self.FK_Comment_ToTable">
+      <End Role="ThanhVien" EntitySet="ThanhViens" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_ToTable_1" Association="Self.FK_Comment_ToTable_1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KhachHang_ToTable" Association="Self.FK_KhachHang_ToTable">
+      <End Role="ThanhVien" EntitySet="ThanhViens" />
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiSanPham_ToTable" Association="Self.FK_LoaiSanPham_ToTable">
+      <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_2" Association="Self.FK_Product_ToTable_2">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThanhVien_ToTable" Association="Self.FK_ThanhVien_ToTable">
+      <End Role="LoaiThanhVien" EntitySet="LoaiThanhViens" />
+      <End Role="ThanhVien" EntitySet="ThanhViens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable" Association="Self.FK_Product_ToTable">
+      <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_1" Association="Self.FK_Product_ToTable_1">
+      <End Role="NhaSanXuat" EntitySet="NhaSanXuats" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_3" Association="Self.FK_Product_ToTable_3">
+      <End Role="NhomSanPham" EntitySet="NhomSanPhams" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

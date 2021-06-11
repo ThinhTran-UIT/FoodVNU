@@ -1,0 +1,26 @@
+﻿@using BanHang.Models;
+@model IEnumerable<NhomSanPham>
+<aside class="sidebar">
+    @foreach (var Group in Model)
+    {
+        <div class="children">
+            <div class="box border-top">
+
+                <div class="hgroup title">
+                    <h3>
+                        <a href=@Url.Action("SanPham","SanPham",new { @IdLSP=0,@NhomSP=Group.Id}) title="Womens">@Group.Name</a>
+                    </h3>
+                </div>
+
+                <div class="category-list list-group">
+                    @foreach (var item in Group.LoaiSanPhams)
+                    {
+                        <a href=@Url.Action("SanPham","SanPham",new { @IdLSP=item.Id,@NhomSP=Group.Id}) class="list-group-item" title="Shoes">
+                            @item.Name
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</aside>

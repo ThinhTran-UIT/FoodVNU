@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="44d75c5c90b941f7818fd975f383eec4" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Bill" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.BillInfo" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.BillNhap" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.BillNhapInfo" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Comment" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.KhachHang" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.LoaiSanPham" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.LoaiThanhVien" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.NhaCungCap" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.NhaSanXuat" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.NhomSanPham" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.Product" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangModel.ThanhVien" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Bill_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_BillInfo_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_BillInfo_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_BillNhap_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_BillNhapInfo_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_BillNhapInfo_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Comment_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Comment_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_KhachHang_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_LoaiSanPham_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Product_ToTable_2" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_ThanhVien_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Product_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Product_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanHangModel.FK_Product_ToTable_3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

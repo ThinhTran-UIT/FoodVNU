@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date_order" Type="datetime" />
+    <Property Name="Delivered" Type="bit" />
+    <Property Name="Payed" Type="bit" />
+    <Property Name="Date_delivery" Type="datetime" />
+    <Property Name="IdKH" Type="int" />
+    <Property Name="Interest" Type="int" />
+    <Property Name="Total" Type="int" />
+  </EntityType>
+  <EntityType Name="BillInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdB" Type="int" />
+    <Property Name="IdSP" Type="int" />
+    <Property Name="Number" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="BillNhap">
+    <Key>
+      <PropertyRef Name="IdBN" />
+    </Key>
+    <Property Name="IdBN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdNCC" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="BillNhapInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSP" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Number" Type="int" />
+    <Property Name="IdBN" Type="int" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="IdTV" Type="int" />
+    <Property Name="IdSP" Type="int" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="IdKH" />
+    </Key>
+    <Property Name="IdKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="IdTV" Type="int" />
+  </EntityType>
+  <EntityType Name="LoaiSanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Icon" Type="varchar(max)" />
+    <Property Name="Alias" Type="varchar(max)" />
+    <Property Name="NhomSP" Type="int" />
+  </EntityType>
+  <EntityType Name="LoaiThanhVien">
+    <Key>
+      <PropertyRef Name="IdLTV" />
+    </Key>
+    <Property Name="IdLTV" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Interest" Type="int" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="IdNCC" />
+    </Key>
+    <Property Name="IdNCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NhaSanXuat">
+    <Key>
+      <PropertyRef Name="IdNSX" />
+    </Key>
+    <Property Name="IdNSX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Info" Type="varchar" MaxLength="255" />
+    <Property Name="Logo" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="NhomSanPham">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Info" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="255" />
+    <Property Name="Inventory" Type="nvarchar" MaxLength="50" />
+    <Property Name="Overview" Type="nvarchar" MaxLength="50" />
+    <Property Name="Like" Type="int" />
+    <Property Name="Comment" Type="int" />
+    <Property Name="IdNCC" Type="int" />
+    <Property Name="IdNSX" Type="int" />
+    <Property Name="IdLSP" Type="int" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="New" Type="bit" />
+    <Property Name="img1" Type="varchar(max)" />
+    <Property Name="img2" Type="varchar(max)" />
+    <Property Name="NhomSP" Type="int" />
+  </EntityType>
+  <EntityType Name="ThanhVien">
+    <Key>
+      <PropertyRef Name="IdTV" />
+    </Key>
+    <Property Name="IdTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="IdLTV" Type="int" />
+  </EntityType>
+  <Association Name="FK_Bill_ToTable">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="IdKH" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="IdKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_ToTable">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfo_ToTable_1">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhap_ToTable">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="BillNhap" Type="Self.BillNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="IdNCC" />
+      </Principal>
+      <Dependent Role="BillNhap">
+        <PropertyRef Name="IdNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhapInfo_ToTable">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="BillNhapInfo" Type="Self.BillNhapInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BillNhapInfo">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillNhapInfo_ToTable_1">
+    <End Role="BillNhap" Type="Self.BillNhap" Multiplicity="0..1" />
+    <End Role="BillNhapInfo" Type="Self.BillNhapInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BillNhap">
+        <PropertyRef Name="IdBN" />
+      </Principal>
+      <Dependent Role="BillNhapInfo">
+        <PropertyRef Name="IdBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_ToTable">
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhVien">
+        <PropertyRef Name="IdTV" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_ToTable_1">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KhachHang_ToTable">
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhVien">
+        <PropertyRef Name="IdTV" />
+      </Principal>
+      <Dependent Role="KhachHang">
+        <PropertyRef Name="IdTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiSanPham_ToTable">
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="0..1" />
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoaiSanPham">
+        <PropertyRef Name="NhomSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="IdNCC" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_1">
+    <End Role="NhaSanXuat" Type="Self.NhaSanXuat" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaSanXuat">
+        <PropertyRef Name="IdNSX" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdNSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_2">
+    <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IdLSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ToTable_3">
+    <End Role="NhomSanPham" Type="Self.NhomSanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhomSanPham">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="NhomSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThanhVien_ToTable">
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThanhVien">
+        <PropertyRef Name="IdLTV" />
+      </Principal>
+      <Dependent Role="ThanhVien">
+        <PropertyRef Name="IdLTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBanHangModelStoreContainer">
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillInfo" EntityType="Self.BillInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillNhap" EntityType="Self.BillNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillNhapInfo" EntityType="Self.BillNhapInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiThanhVien" EntityType="Self.LoaiThanhVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaCungCap" EntityType="Self.NhaCungCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaSanXuat" EntityType="Self.NhaSanXuat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhomSanPham" EntityType="Self.NhomSanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThanhVien" EntityType="Self.ThanhVien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Bill_ToTable" Association="Self.FK_Bill_ToTable">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_ToTable" Association="Self.FK_BillInfo_ToTable">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="BillInfo" EntitySet="BillInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfo_ToTable_1" Association="Self.FK_BillInfo_ToTable_1">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="BillInfo" EntitySet="BillInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhap_ToTable" Association="Self.FK_BillNhap_ToTable">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="BillNhap" EntitySet="BillNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhapInfo_ToTable" Association="Self.FK_BillNhapInfo_ToTable">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="BillNhapInfo" EntitySet="BillNhapInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillNhapInfo_ToTable_1" Association="Self.FK_BillNhapInfo_ToTable_1">
+      <End Role="BillNhap" EntitySet="BillNhap" />
+      <End Role="BillNhapInfo" EntitySet="BillNhapInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_ToTable" Association="Self.FK_Comment_ToTable">
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_ToTable_1" Association="Self.FK_Comment_ToTable_1">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KhachHang_ToTable" Association="Self.FK_KhachHang_ToTable">
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+      <End Role="KhachHang" EntitySet="KhachHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiSanPham_ToTable" Association="Self.FK_LoaiSanPham_ToTable">
+      <End Role="NhomSanPham" EntitySet="NhomSanPham" />
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable" Association="Self.FK_Product_ToTable">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_1" Association="Self.FK_Product_ToTable_1">
+      <End Role="NhaSanXuat" EntitySet="NhaSanXuat" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_2" Association="Self.FK_Product_ToTable_2">
+      <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ToTable_3" Association="Self.FK_Product_ToTable_3">
+      <End Role="NhomSanPham" EntitySet="NhomSanPham" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThanhVien_ToTable" Association="Self.FK_ThanhVien_ToTable">
+      <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

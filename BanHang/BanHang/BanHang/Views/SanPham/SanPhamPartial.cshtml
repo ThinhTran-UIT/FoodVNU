@@ -1,0 +1,23 @@
+﻿@using BanHang.Models;
+@model IEnumerable<Product>
+<h1>@Model.First().LoaiSanPham.Name</h1>
+<ul class="product-list isotope">
+    @foreach (var item in Model.Take(6))
+    {
+        <li class="standard" data-price="58">
+            <a href=@Url.Action("Product_Info","SanPham",new {@Id=item.Id}) title="Lisette Dress">
+                <div class="image">
+                    <img class="primary" src="@Url.Content("~/Content/img/HinhSP/" + item.Image)" alt="Lisette Dress" />
+                    <img class="secondary" src="@Url.Content("~/Content/img/HinhSP/" + item.img2)" alt="Lisette Dress" />
+                </div>
+                <div class="title">
+                    <div class="prices">
+                        <span class="price">@item.Price VND</span>
+                    </div>
+                    <h3>@item.Name</h3>
+                </div>
+            </a>
+        </li>
+    }
+    </ul>
+

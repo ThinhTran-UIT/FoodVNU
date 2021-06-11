@@ -1,0 +1,23 @@
+﻿@using BanHang.Models;
+@{
+    ViewBag.Title = "SanPham1";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+    IEnumerable<Product> lstSP = (IEnumerable<Product>)ViewBag.listSP;
+    IEnumerable<Product> lstSPLau = (IEnumerable<Product>)ViewBag.listLau;
+}
+<div class="col-sm-9">
+    <!-- Products list -->
+    <h1>Com</h1>
+    <ul class="product-list isotope">
+        @Html.Partial("SanPhamPartial", lstSP)
+    </ul>
+    <h1>Lau</h1>
+    <ul class="product-list isotope">
+        @Html.Partial("SanPhamPartial", lstSPLau)
+    </ul>
+</div>
+
+
+

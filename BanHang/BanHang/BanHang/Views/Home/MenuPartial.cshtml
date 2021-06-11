@@ -1,0 +1,33 @@
+﻿@using BanHang.Models;
+@model IEnumerable<NhomSanPham>
+<div class="menu-main-navigation-container">
+    <ul id="menu-main-navigation" class="main-menu">
+
+        <li class="menu-item-home menu-item-has-children megamenu-parent " data-width="">
+            <a href=@Url.Action("Index","Home")>Home</a>          
+        </li>
+
+        <li class="menu-item-has-children">
+            <a >Products</a>
+            <ul class="sub-menu">
+                @foreach (var item in Model)
+                {
+                    <li class="menu-item-has-children">
+                        <a href=@Url.Action("SanPham","SanPham",new {@IdLSP=0,@NhomSP=item.Id})>@item.Name</a>
+                        <ul class="sub-menu">
+                            @foreach (var group in item.LoaiSanPhams.Where(n=>n.NhomSP==@item.Id))
+                            {
+                                
+                                    <li><a href=@Url.Action("SanPham","SanPham",new { @IdLSP=group.Id,@NhomSP=item.Id})>@group.Name</a></li>
+                                
+                            }
+                        </ul>
+                    </li>
+                }               
+            </ul>
+        </li>
+        <li><a href=@Url.Action("Index","GioHang")>Cart</a></li>
+
+
+    </ul>
+</div>

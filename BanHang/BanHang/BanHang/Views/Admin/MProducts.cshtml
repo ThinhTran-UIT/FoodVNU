@@ -1,0 +1,89 @@
+﻿@using BanHang.Models
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "MProducts";
+    Layout = "~/Views/Layout/AdminLayOut.cshtml";
+}
+
+<h2>Management Product</h2>
+
+<div class="buttons">
+    <a href=@Url.Action("TaoMoi","Admin") class="btn btn-sm btn-block-xs" >
+        Create Products 
+    </a>
+</div>
+
+<section class="cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="box">
+                    <div class="box-header">
+                        <h5>You currently have <strong>@Model.Count()</strong> item(s) </h5>
+                    </div>
+                    <div class="box-content">
+                        <div class="cart-items">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col_product text-left">Name</th>
+                                        <th class="col_product text-left">Product</th>
+                                        <th class="col_product text-left">Price</th>
+                                        <th class="col_remove text-right">&nbsp;</th>
+                                        <th class="col_single text-right"></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+
+
+                                        <tr>
+                                            <td data-title="Product" class="col_product text-left">
+
+
+                                                <h5>
+                                                    <a href=@Url.Action("Product_Info","SanPham",new {@Id=item.Id})>@item.Name</a>
+                                                </h5>
+
+                                            </td>
+                                            <td data-title="Product" class="col_product text-left">
+                                                <div class="image visible-lg">
+                                                    <a href=@Url.Action("Product_Info","SanPham",new {@Id=item.Id})>
+                                                        <img src="@Url.Content("~/Content/img/HinhSP/" +item.Image )" style="height:70px;width:80px;" alt="Helen Romper">
+                                                    </a>
+
+
+                                                </div>
+
+                                            </td>
+                                            <td data-title="Single" class="col_single text-right">
+                                                <span class="single-price">@item.Price</span>
+
+                                            </td>
+
+                                            <td data-title="Remove" class="col_remove text-right">
+                                                <a href=@Url.Action("Xoa","Admin",new {@Id=item.Id})>
+                                                    <i class="fa fa-trash fa-lg"></i>
+                                                </a>
+                                            </td>
+
+                                            <td data-title="Total" class="col_total text-right">
+                                               <a href=@Url.Action("ChinhSua","Admin",new {@Id=item.Id}) >
+                                                   Change
+                                               </a>                                              
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

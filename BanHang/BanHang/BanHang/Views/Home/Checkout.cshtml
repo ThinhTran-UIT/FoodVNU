@@ -1,0 +1,148 @@
+﻿@using BanHang.Models
+@model KhachHang
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="box">
+
+                    <!-- Checkout progress -->
+                    <div id="checkout-progress">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#">
+                                    <i class="fa fa-map-marker fa-lg"></i>
+                                    <span>Billing address</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End id="checkout-progress" -->
+                    <!-- Checkout content -->
+                    @using (Html.BeginForm("DatHang", "GioHang"))
+                    {
+                    <div id="checkout-content">
+                        <div class="box-header">
+                            <h3>Billing address</h3>
+                            <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                        </div>
+
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="first_name" class="control-label">Name</label>
+                                        <div class="controls">
+                                            @*<input type="text" class="form-control" value="" name="first_name" id="first_name" />*@
+                                            @Html.TextBoxFor(Model=>Model.Name,new { @class="form-control"})
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last_name" class="control-label">Sex</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" value="" name="last_name" id="last_name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="control-label">Email</label>
+                                        <div class="controls">
+                                            @*<input type="text" class="form-control" value="" name="email" id="email" />*@
+                                            @Html.TextBoxFor(Model => Model.Email, new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="control-label">Phone</label>
+                                        <div class="controls">
+                                            @*<input type="text" class="form-control" value="" name="phone" id="phone" />*@
+                                            @Html.TextBoxFor(Model => Model.Phone, new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="company" class="control-label">Company</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" value="" name="company" id="company" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="street_address" class="control-label">Address</label>
+                                        <div class="controls">
+                                            @*<input type="text" class="form-control" value="" name="street_address" id="street_address" />*@
+                                            @Html.TextBoxFor(Model => Model.Address, new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="city" class="control-label">Town / City</label>
+                                                <div class="controls">
+                                                    <input type="text" class="form-control" value="" name="city" id="city" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="zip" class="control-label">Zip / Postcode</label>
+                                                <div class="controls">
+                                                    <input type="text" class="form-control" value="" name="zip" id="zip" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="country" class="control-label">Country</label>
+                                                <div class="controls">
+                                                    <select class="form-control" id="country" name="country">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="state" class="control-label">State</label>
+                                                <div class="controls">
+                                                    <div id="states">
+                                                        <select class="form-control" id="state" name="state">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <a href=@Url.Action("DangKy","Home") class="btn btn-sm pull-left">
+                                <i class="fa fa-chevron-left"></i> &nbsp; Back to cart
+                            </a>
+
+                            <button type="submit" class="btn btn-primary pull-right">
+                                Shipping address &nbsp; <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- End id="checkout-content" -->
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
